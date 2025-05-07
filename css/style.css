@@ -1,0 +1,26 @@
+#main {
+    background-image: url('../images/background.jpeg');
+}
+
+footer{
+    background-color: #599cbd;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.div-container-fluid{
+    /* background-color: #599cbd; */
+    text-align: center;
+    padding: 20px;
+    margin: 50px;
+
+}
+
+.getWeather{
+    text-align: center;
+    margin: 10px;
+}
