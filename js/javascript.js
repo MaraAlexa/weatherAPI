@@ -1,5 +1,5 @@
 window.onload = function () {
-    document.querySelector('#btn-add').addEventListener('click', function () {
+    document.querySelector('#getWeather').addEventListener('click', function () {
         getWeather();
     });
 }
