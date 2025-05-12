@@ -57,6 +57,36 @@ function getForecast() {
     });
 }
 
+function getWeatherTips() {
+  const city = document.getElementById('cityInput').value.trim();
+  const API_KEY = '9ccabe21e06695561b5fe43b81c805b3';
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      const temp = data.main.temp;
+      const description = data.weather[0].description;
+      document.getElementById('result').textContent =
+        `Temperature in ${city}: ${temp}°C, Weather: ${description}`;
+
+      // Basic clothing/activity tips based on temp
+      let tip = '';
+      if (temp < 5) tip = 'Wear a heavy coat and scarf!';
+      else if (temp < 15) tip = 'Light jacket recommended.';
+      else if (temp < 25) tip = 'Perfect for outdoor activities!';
+      else tip = 'It’s hot! Stay hydrated and wear sunscreen.';
+
+      document.getElementById('tip').textContent = tip;
+    })
+    .catch(error => {
+      console.error(error);
+      document.getElementById('result').textContent = 'Failed to load weather data.';
+      document.getElementById('tip').textContent = '';
+    });
+}
+
+
 
 // const API_KEY = '9ccabe21e06695561b5fe43b81c805b3'; // Replace with your real key
 // const city = 'London';
