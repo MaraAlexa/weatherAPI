@@ -34,6 +34,30 @@ function getWeather() {
     
 }
 
+function getForecast() {
+  const city = document.getElementById('cityInput').value.trim();
+  const API_KEY = '9ccabe21e06695561b5fe43b81c805b3';
+  const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`;
+
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      const forecastList = data.list.slice(0, 5); // show 5 forecasts (every 3h)
+      const output = forecastList.map(item => {
+        const date = item.dt_txt;
+        const temp = item.main.temp;
+        const desc = item.weather[0].description;
+        return `<li>${date}: ${temp}°C - ${desc}</li>`;
+      }).join('');
+      document.getElementById('forecastResult').innerHTML = `<ul>${output}</ul>`;
+    })
+    .catch(err => {
+      console.error(err);
+      document.getElementById('forecastResult').textContent = 'Error loading forecast.';
+    });
+}
+
+
 // const API_KEY = '9ccabe21e06695561b5fe43b81c805b3'; // Replace with your real key
 // const city = 'London';
 
