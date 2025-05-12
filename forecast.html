@@ -20,6 +20,13 @@
     </div>
   </nav>
 
+  <div class="container text-center mt-4">
+    <h2>5-Day Weather Forecast</h2>
+    <input type="text" id="cityInput" class="form-control w-50 mx-auto my-3" placeholder="Enter city name">
+    <button onclick="getForecast()" class="btn btn-primary">Get Forecast</button>
+    <div id="forecastResult" class="mt-3"></div>
+  </div>
+
   <div class="container mt-4">
     <h2>Project Documentation</h2>
     <p>This project uses the OpenWeatherMap API to provide weather data to users.</p>
