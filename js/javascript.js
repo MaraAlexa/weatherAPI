@@ -5,9 +5,16 @@
 // }
 
 const API_KEY = '9ccabe21e06695561b5fe43b81c805b3'; // Replace with your real key
-const city = 'London';
 
 function getWeather() {
+  // update the getWeather function to use a dynamic city input 
+  const city = document.getElementById('cityInput').value.trim();
+
+  if (!city) {
+    document.getElementById('result').textContent = 'Please enter a city name.';
+    return;
+  }
+
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
 
   fetch(url)
