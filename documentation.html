@@ -20,11 +20,25 @@
     </div>
   </nav>
 
-  <div class="container text-center mt-4">
-    <h2>5-Day Weather Forecast</h2>
-    <input type="text" id="cityInput" class="form-control w-50 mx-auto my-3" placeholder="Enter city name">
-    <button onclick="getForecast()" class="btn btn-primary">Get Forecast</button>
-    <div id="forecastResult" class="mt-3"></div>
+  <div class="container mt-4">
+    <h2>Project Documentation</h2>
+    <p>This project uses the OpenWeatherMap API to provide weather data to users.</p>
+
+    <h4>JavaScript Functions</h4>
+    <ul>
+      <li><strong>getWeather()</strong> – Fetches current weather data for a city and displays temperature and description.</li>
+      <li><strong>getForecast()</strong> – Fetches 5-day forecast and traverses an array to show multiple entries.</li>
+      <li><strong>getWeatherTips()</strong> – Fetches current weather and provides suggestions based on the temperature.</li>
+    </ul>
+
+    <h4>API Used</h4>
+    <p><a href="https://openweathermap.org/api">OpenWeatherMap API</a> with free API key and endpoints for current and forecast data.</p>
+
+    <h4>Filters</h4>
+    <p>Users can type a city name to get filtered weather information.</p>
+
+    <h4>Responsive Design</h4>
+    <p>Bootstrap is used to ensure the layout adapts for both desktop and mobile devices.</p>
   </div>
 
   <footer class="text-center mt-5">
@@ -32,4 +46,3 @@
   </footer>
 </body>
 </html>
-<script src="js/javascript.js"></script>
