@@ -47,7 +47,19 @@ function getForecast() {
         const date = item.dt_txt;
         const temp = item.main.temp;
         const desc = item.weather[0].description;
-        return `<li>${date}: ${temp}°C - ${desc}</li>`;
+        const icon = item.weather[0].icon;
+        return `
+          <div class="col-md-4 col-lg-2 mb-4">
+            <div class="card shadow-sm h-100">
+              <div class="card-body text-center">
+                <h6 class="card-title">${date}</h6>
+                <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="${desc}">
+                <p class="card-text">${temp}°C</p>
+                <p class="text-muted small">${desc}</p>
+              </div>
+            </div>
+          </div>
+        `;
       }).join('');
       document.getElementById('forecastResult').innerHTML = `<ul>${output}</ul>`;
     })
