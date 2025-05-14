@@ -5,6 +5,7 @@
 // }
 
 const API_KEY = '9ccabe21e06695561b5fe43b81c805b3'; // Replace with your real key
+// TODO: use 1 API key and 1 URL for all 3 functions
 
 function getWeather() {
   // update the getWeather function to use a dynamic city input 
@@ -14,6 +15,7 @@ function getWeather() {
     document.getElementById('result').textContent = 'Please enter a city name.';
     return;
   }
+  // finish dynamic city input
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
 
@@ -30,7 +32,6 @@ function getWeather() {
       console.error('Error:', error);
       document.getElementById('result').textContent = 'Failed to load weather data.';
     });
-
     
 }
 
