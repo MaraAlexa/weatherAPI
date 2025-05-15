@@ -18,15 +18,21 @@ function getWeather() {
   // finish dynamic city input
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
-
   fetch(url)
     .then(response => response.json())
     .then(data => {
       console.log(data); // See full API response in the console
       const temp = data.main.temp;
-      const description = data.weather[0].description;
-      document.getElementById('result').textContent =
-        `Temperature: ${temp}°C, Weather: ${description}`;
+      const windspeed = data.wind.speed;
+      // no rain data is found
+      const weather = data.weather[0].description;
+      document.getElementById('temperature').textContent =
+        `${temp}°C`;
+      document.getElementById('windspeed').textContent =
+        `${windspeed}`;
+      document.getElementById('weather').textContent =
+        `Weather: ${weather}`;
+        
     })
     .catch(error => {
       console.error('Error:', error);
