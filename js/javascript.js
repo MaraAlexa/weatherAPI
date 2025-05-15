@@ -5,23 +5,25 @@
 // }
 
 const API_KEY = '9ccabe21e06695561b5fe43b81c805b3'; // Replace with your real key
-// TODO: use 1 API key and 1 URL for all 3 functions
+// const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
+
+// TODO: use 1 API key and 1 URL for all 3 functions ; forecast fetch is different than weather fetch
 
 function getWeather() {
-  // update the getWeather function to use a dynamic city input 
+  //  use a dynamic city input 
   const city = document.getElementById('cityInput').value.trim();
 
   if (!city) {
     document.getElementById('result').textContent = 'Please enter a city name.';
     return;
   }
-  // finish dynamic city input
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
+
   fetch(url)
     .then(response => response.json())
     .then(data => {
-      console.log(data); // See full API response in the console
+      console.log('new console',data); // See full API response in the console
       const temp = data.main.temp;
       const windspeed = data.wind.speed;
       // no rain data is found
@@ -43,7 +45,6 @@ function getWeather() {
 
 function getForecast() {
   const city = document.getElementById('cityInput').value.trim();
-  const API_KEY = '9ccabe21e06695561b5fe43b81c805b3';
   const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`;
 
   fetch(url)
@@ -78,7 +79,6 @@ function getForecast() {
 
 function getWeatherTips() {
   const city = document.getElementById('cityInput').value.trim();
-  const API_KEY = '9ccabe21e06695561b5fe43b81c805b3';
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
 
   fetch(url)
