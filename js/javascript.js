@@ -5,10 +5,8 @@
 // }
 
 const API_KEY = '9ccabe21e06695561b5fe43b81c805b3'; // Replace with your real key
-// const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
 
-// TODO: use 1 API key and 1 URL for all 3 functions ; forecast fetch is different than weather fetch
-
+// Function 1: Current Weather
 function getWeather() {
   //  use a dynamic city input 
   const city = document.getElementById('cityInput').value.trim();
@@ -43,19 +41,28 @@ function getWeather() {
     
 }
 
+// Function 2: Forecast every 3 hours ( 5 cards)
 function getForecast() {
   const city = document.getElementById('cityInput').value.trim();
+
+  if (!city) {
+    document.getElementById('forecastResult').textContent = 'Please enter a city name.';
+    return;
+  }
+
   const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`;
 
   fetch(url)
     .then(res => res.json())
     .then(data => {
-      const forecastList = data.list.slice(0, 5); // show 5 forecasts (every 3h)
+      console.log('new console', data); // See full API response in the console
+      const forecastList = data.list.slice(0, 5); // slice the first 5 from list
       const output = forecastList.map(item => {
         const date = item.dt_txt;
         const temp = item.main.temp;
         const desc = item.weather[0].description;
         const icon = item.weather[0].icon;
+
         return `
           <div class="col-md-4 col-lg-2 mb-4">
             <div class="card shadow-sm h-100">
@@ -69,7 +76,7 @@ function getForecast() {
           </div>
         `;
       }).join('');
-      document.getElementById('forecastResult').innerHTML = `<ul>${output}</ul>`;
+      document.getElementById('forecastResult').innerHTML = output;
     })
     .catch(err => {
       console.error(err);
@@ -77,8 +84,16 @@ function getForecast() {
     });
 }
 
+// Function 3: Weather Tips
 function getWeatherTips() {
   const city = document.getElementById('cityInput').value.trim();
+
+  if (!city) {
+    document.getElementById('result').textContent = 'Please enter a city name.';
+    document.getElementById('tip').textContent = ''; // empty the tip
+    return;
+  }
+
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
 
   fetch(url)
@@ -86,16 +101,15 @@ function getWeatherTips() {
     .then(data => {
       const temp = data.main.temp;
       const description = data.weather[0].description;
-      document.getElementById('result').textContent =
-        `Temperature in ${city}: ${temp}°C, Weather: ${description}`;
 
-      // Basic clothing/activity tips based on temp
       let tip = '';
       if (temp < 5) tip = 'Wear a heavy coat and scarf!';
       else if (temp < 15) tip = 'Light jacket recommended.';
       else if (temp < 25) tip = 'Perfect for outdoor activities!';
       else tip = 'It’s hot! Stay hydrated and wear sunscreen.';
 
+      document.getElementById('result').textContent =
+        `Temperature in ${city}: ${temp}°C, Weather: ${description}`;
       document.getElementById('tip').textContent = tip;
     })
     .catch(error => {
