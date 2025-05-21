@@ -24,11 +24,11 @@
     <h2>Weather Forecast every 3 hours</h2>
     <input type="text" id="cityInput" class="form-control w-50 mx-auto my-3" placeholder="Enter city name">
     <button onclick="getForecast()" class="btn btn-primary">Get Forecast by Hour</button>
-  
-    <!-- Only one container, no nesting -->
-    <div class="row mt-4" id="forecastResult">
+
+     <!-- Bootstrap CARDS - Grid Cards system from bootstrap-->
+       <!-- (.row-cols) for Cards wrapper row , .g-4 for Gutters (padding between cards) and .mt-4 for spacing (margin) -->
+    <div class="row row-cols-1 row-cols-md-3 g-4 mt-4" id="forecastResult">
       <!-- JS will inject cards here -->
-    </div>
   </div>
   
 

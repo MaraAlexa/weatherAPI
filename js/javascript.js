@@ -66,7 +66,7 @@ function getForecast() {
         const icon = item.weather[0].icon;
 
         return `
-          <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4">
+          <div class="col">
             <div class="card shadow-sm h-100">
               <div class="card-body text-center">
                 <h6 class="card-title">${date}</h6>
