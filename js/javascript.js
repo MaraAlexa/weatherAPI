@@ -58,7 +58,7 @@ function getForecast() {
     .then(res => res.json())
     .then(data => {
       console.log('new console', data); // See full API response in the console
-      const forecastList = data.list.slice(0, 5); // slice the first 5 from list
+      const forecastList = data.list.slice(0, 8); // slice the first 5 from list
       const output = forecastList.map(item => {
         const date = item.dt_txt;
         const temp = item.main.temp;
@@ -66,7 +66,7 @@ function getForecast() {
         const icon = item.weather[0].icon;
 
         return `
-          <div class="col-md-4 col-lg-2 mb-4">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-2 mb-4">
             <div class="card shadow-sm h-100">
               <div class="card-body text-center">
                 <h6 class="card-title">${date}</h6>

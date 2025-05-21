@@ -24,8 +24,13 @@
     <h2>Weather Forecast every 3 hours</h2>
     <input type="text" id="cityInput" class="form-control w-50 mx-auto my-3" placeholder="Enter city name">
     <button onclick="getForecast()" class="btn btn-primary">Get Forecast by Hour</button>
-    <div id="forecastResult" class="mt-3"></div>
+  
+    <!-- Only one container, no nesting -->
+    <div class="row mt-4" id="forecastResult">
+      <!-- JS will inject cards here -->
+    </div>
   </div>
+  
 
   <div class="container text-center mt-4">
     <h2>5-Day Weather Forecast</h2>
