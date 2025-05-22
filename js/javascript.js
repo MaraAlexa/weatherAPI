@@ -1,22 +1,30 @@
-// window.onload = function () {
-//     document.querySelector('#getWeather').addEventListener('click', function () {
-//         getWeather();
-//     });
-// }
-
 const API_KEY = '9ccabe21e06695561b5fe43b81c805b3'; // Replace with your real key
+
+// reusable helper function
+function getCityInput() {
+  const input = document.getElementById('cityInput');
+
+  const city = input.value.trim();
+  if (!city) {
+    // return alert or document.getElementById('result').textContent = 'Please enter a city name.';
+    alert("Please enter a city name.");
+    return null;
+  }
+
+  return city;
+}
+
 
 // Function 1: Current Weather
 function getWeather() {
-  //  use a dynamic city input 
-  const city = document.getElementById('cityInput').value.trim();
-  console.log('new city', city); 
 
+  const city = getCityInput();
 
-  if (!city) {
-    document.getElementById('result').textContent = 'Please enter a city name.';
-    return;
-  }
+   // ✅ Clear previous messages
+   document.getElementById('result').textContent = '';
+   document.getElementById('temperature').textContent = '';
+   document.getElementById('windspeed').textContent = '';
+   document.getElementById('weather').textContent = '';
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
 
@@ -45,12 +53,7 @@ function getWeather() {
 
 // Function 2: Forecast every 3 hours ( 5 cards)
 function getForecast() {
-  const city = document.getElementById('cityInput').value.trim();
-
-  if (!city) {
-    document.getElementById('forecastResult').textContent = 'Please enter a city name.';
-    return;
-  }
+  const city = getCityInput();
 
   const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`;
 
@@ -85,6 +88,13 @@ function getForecast() {
       document.getElementById('forecastResult').textContent = 'Error loading forecast.';
     });
 }
+
+
+
+
+
+
+
 
 // only for PAID subscription. https://openweathermap.org/full-price#current
 async function getForecastByDay() {
@@ -136,6 +146,7 @@ async function getForecastByDay() {
     document.getElementById('forecast5day').textContent = 'Error loading forecast.';
   }
 }
+
 
 
 
